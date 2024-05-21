@@ -2,9 +2,10 @@ package com.zuitt.postApp.services;
 
 // It is  service implementation that retrieves the user details using Spring Security's UserDetailsService
 
-import com.zuitt.postApp.models.User;
+
 import com.zuitt.postApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,7 +27,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         // Retrieve user details from the database using the provided username
-        User user = userRepository.findByUsername(username);
+        com.zuitt.postApp.models.User user = userRepository.findByUsername(username);
 
         // if user is NOT found, throw UsernameNotFoundException with appropriate message
         if(user == null) {
@@ -34,6 +35,6 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
 
         // If user is found, create a UserDetails object with username, password, and empty arraylist of authorities
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
+        return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 }
