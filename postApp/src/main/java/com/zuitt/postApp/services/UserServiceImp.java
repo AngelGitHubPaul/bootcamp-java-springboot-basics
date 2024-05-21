@@ -1,5 +1,6 @@
 package com.zuitt.postApp.services;
 
+import com.zuitt.postApp.models.User;
 import com.zuitt.postApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

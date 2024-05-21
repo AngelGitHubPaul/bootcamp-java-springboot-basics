@@ -1,5 +1,10 @@
 package com.zuitt.postApp.services;
 
+
+import com.zuitt.postApp.models.User;
+
+import java.util.Optional;
+
 // Services it serves as an abstract layer that separates the implementation details from the logic code
 public interface UserService {
 
