@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -103,10 +104,10 @@ public class PostServiceImp implements PostService{
 
     public ResponseEntity getMyPosts(String stringToken) {
 
-        String authenticatedUser = jwtToken.getUsernameFromToken(stringToken);
+        String username = jwtToken.getUsernameFromToken(stringToken);
 
-        long userId = userRepository.findByUsername(authenticatedUser).getId();
+        User user = userRepository.findByUsername(username);
 
-        return new ResponseEntity<>(postRepository.findAllById(userId), HttpStatus.OK);
+        return new ResponseEntity<>(postRepository.findByUser(user), HttpStatus.OK);
     }
 }
