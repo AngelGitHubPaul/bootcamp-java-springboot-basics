@@ -1,5 +1,6 @@
 package com.zuitt.postApp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -26,6 +27,7 @@ public class User {
     // (mappedBy = "user") specifies that the Post entity (child table) owns the relationship.
     @OneToMany(mappedBy = "user")
     // Declaring "posts" field provided access to the collection of <Post> objects associated with the user
+    @JsonIgnore
     private Set<Post> posts;
 
     // Getter method returns the set of post objects associated with the user
